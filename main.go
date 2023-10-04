@@ -10,7 +10,7 @@ import (
 
 // defining task type
 const (
-	TypeFluxdbFetch = "fluxdb:initfetch"
+	TypeFluxdbFetch = "fluxdb:fetchrecords"
 )
 
 // task payload for any flux fetch related task
