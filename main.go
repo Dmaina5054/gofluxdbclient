@@ -48,6 +48,7 @@ func initScheduler() {
 	// schedule tasks with different payloads
 	scheduleFluxdbFetchTask("MWKs", "MWKsDownsampled")
 	scheduleFluxdbFetchTask("MWKn", "MWKnDownsampled")
+	
 
 	
 	
