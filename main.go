@@ -31,17 +31,26 @@ func initScheduler() {
 		},
 	)
 
-	// defining task payload
-	payload, err := json.Marshal(FluxdbFetchPayload{BucketName: "MWKs", DestinationBucket: "MWKsDownsampled"})
-	// handle marhsalling errr
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	// we have payload register scheduler
-	if _, err := scheduler.Register("*/5 * * * *", asynq.NewTask(TypeFluxdbFetch, payload)); err != nil {
-		log.Fatal(err)
+	//define a function to schedule task with a given payload
+	scheduleFluxdbFetchTask := func (bucketName, destinationBucket string)  {
+		payload, err := json.Marshal(FluxdbFetchPayload{BucketName: bucketName, DestinationBucket: destinationBucket})
+		if err != nil{
+			log.Fatal(err)
+		}
+
+		//schedule the task
+		if _, err := scheduler.Register("*/5 * * * *", asynq.NewTask(TypeFluxdbFetch,payload)); err != nil{
+			log.Fatal(err)
+		}
+		
 	}
+	// schedule tasks with different payloads
+	scheduleFluxdbFetchTask("MWKs", "MWKsDownsampled")
+	scheduleFluxdbFetchTask("MWKn", "MWKnDownsampled")
+
+	
+	
 
 	// if no error
 	// run scheduler with defined cron
