@@ -44,13 +44,18 @@ func initScheduler() {
 		}
 
 	}
-	// schedule tasks with different payloads
+
+	//TODO: Spawn to container per region
+	//schedule tasks with different payloads
 	scheduleFluxdbFetchTask("MWKs", "MWKsDownsampled")
 	scheduleFluxdbFetchTask("MWKn", "MWKnDownsampled")
 	scheduleFluxdbFetchTask("KSNOnu", "KSNOnuDownsampled")
 	scheduleFluxdbFetchTask("KWDOnu", "KWNOnuDownsampled")
 	scheduleFluxdbFetchTask("STNOnu", "STNOnuDownsampled")
+	scheduleFluxdbFetchTask("HTROnu", "HTROnuDownsampled")
+	scheduleFluxdbFetchTask("LSMOnu", "LSMOnuDownsampled")
 	scheduleFluxdbFetchTask("KRBSOnu", "KRBSOnuDownsampled")
+	scheduleFluxdbFetchTask("UMJ3", "UMJ3Downsampled")
 
 	// if no error
 	// run scheduler with defined cron
@@ -63,6 +68,7 @@ func initScheduler() {
 }
 
 func main() {
+
 	initScheduler()
 
 }
